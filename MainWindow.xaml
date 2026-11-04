@@ -1,0 +1,624 @@
+<Border xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Margin="14" CornerRadius="18" Background="#14161B" BorderBrush="#262A33" BorderThickness="1"
+        TextElement.Foreground="#E8EAEE" TextElement.FontFamily="Segoe UI Variable Text, Segoe UI" TextElement.FontSize="13">
+  <Border.Effect>
+    <DropShadowEffect BlurRadius="26" ShadowDepth="0" Opacity="0.6" Color="Black"/>
+  </Border.Effect>
+
+  <Border.Resources>
+    <FontFamily x:Key="Icons">Segoe Fluent Icons, Segoe MDL2 Assets</FontFamily>
+
+    <Style x:Key="BaseBtn" TargetType="Button">
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="Foreground" Value="#E8EAEE"/>
+      <Setter Property="Padding" Value="14,10"/>
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+      <Setter Property="HorizontalContentAlignment" Value="Center"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Grid>
+              <Border x:Name="Bd" Background="{TemplateBinding Background}" CornerRadius="11"/>
+              <Border x:Name="Hv" Background="White" Opacity="0" CornerRadius="11"/>
+              <ContentPresenter Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="Center"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="Hv" Property="Opacity" Value="0.06"/>
+              </Trigger>
+              <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="Hv" Property="Opacity" Value="0.12"/>
+              </Trigger>
+              <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.45"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="PrimaryBtn" TargetType="Button" BasedOn="{StaticResource BaseBtn}">
+      <Setter Property="Background" Value="#2FB36E"/>
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="Padding" Value="16,13"/>
+    </Style>
+
+    <Style x:Key="SecondaryBtn" TargetType="Button" BasedOn="{StaticResource BaseBtn}">
+      <Setter Property="Background" Value="#1E2128"/>
+    </Style>
+
+    <Style x:Key="RowBtn" TargetType="Button" BasedOn="{StaticResource BaseBtn}">
+      <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+      <Setter Property="Padding" Value="12,11"/>
+    </Style>
+
+    <Style x:Key="IconBtn" TargetType="Button" BasedOn="{StaticResource BaseBtn}">
+      <Setter Property="Width" Value="34"/>
+      <Setter Property="Height" Value="34"/>
+      <Setter Property="Padding" Value="0"/>
+      <Setter Property="Foreground" Value="#AEB4C0"/>
+      <Setter Property="FontFamily" Value="{StaticResource Icons}"/>
+      <Setter Property="FontSize" Value="13"/>
+    </Style>
+
+    <Style x:Key="TitleBtn" TargetType="Button" BasedOn="{StaticResource BaseBtn}">
+      <Setter Property="Width" Value="36"/>
+      <Setter Property="Height" Value="30"/>
+      <Setter Property="Padding" Value="0"/>
+      <Setter Property="Foreground" Value="#8B92A0"/>
+      <Setter Property="FontFamily" Value="{StaticResource Icons}"/>
+      <Setter Property="FontSize" Value="10"/>
+    </Style>
+
+    <Style x:Key="NavBtn" TargetType="RadioButton">
+      <Setter Property="Foreground" Value="#8B92A0"/>
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+      <Setter Property="GroupName" Value="nav"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="RadioButton">
+            <Border x:Name="Bd" Background="Transparent" CornerRadius="9" Padding="0,8">
+              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#C9CDD6"/>
+              </Trigger>
+              <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="Bd" Property="Background" Value="#2A2E38"/>
+                <Setter Property="Foreground" Value="#F2F4F7"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <!-- плашка выбора качества -->
+    <Style x:Key="Pill" TargetType="RadioButton">
+      <Setter Property="Foreground" Value="#E8EAEE"/>
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+      <Setter Property="GroupName" Value="quality"/>
+      <Setter Property="Margin" Value="0,0,8,8"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="RadioButton">
+            <Border x:Name="Bd" Background="#1C1F26" BorderBrush="#1C1F26" BorderThickness="1.5" CornerRadius="10"
+                    Padding="13,7" MinWidth="66">
+              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="Bd" Property="Background" Value="#22262E"/>
+              </Trigger>
+              <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="Bd" Property="Background" Value="#1A2C24"/>
+                <Setter TargetName="Bd" Property="BorderBrush" Value="#2FB36E"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="Switch" TargetType="CheckBox">
+      <Setter Property="Foreground" Value="#E8EAEE"/>
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="CheckBox">
+            <Grid Background="Transparent">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+              </Grid.ColumnDefinitions>
+              <ContentPresenter VerticalAlignment="Center" Margin="0,0,14,0"/>
+              <Border x:Name="Track" Grid.Column="1" Width="42" Height="24" CornerRadius="12"
+                      Background="#343944" VerticalAlignment="Center">
+                <Ellipse x:Name="Thumb" Width="18" Height="18" Fill="#B9BEC9"
+                         HorizontalAlignment="Left" Margin="3,0,0,0"/>
+              </Border>
+            </Grid>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="Track" Property="Background" Value="#2FB36E"/>
+                <Setter TargetName="Thumb" Property="HorizontalAlignment" Value="Right"/>
+                <Setter TargetName="Thumb" Property="Margin" Value="0,0,3,0"/>
+                <Setter TargetName="Thumb" Property="Fill" Value="White"/>
+              </Trigger>
+              <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.5"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="Card" TargetType="Border">
+      <Setter Property="Background" Value="#1C1F26"/>
+      <Setter Property="CornerRadius" Value="14"/>
+      <Setter Property="Padding" Value="16"/>
+      <Setter Property="Margin" Value="0,6,0,18"/>
+    </Style>
+
+    <Style x:Key="Caption" TargetType="TextBlock">
+      <Setter Property="Foreground" Value="#6E7584"/>
+      <Setter Property="FontSize" Value="11"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="Margin" Value="4,0,0,0"/>
+    </Style>
+
+    <Style x:Key="Hint" TargetType="TextBlock">
+      <Setter Property="Foreground" Value="#8B92A0"/>
+      <Setter Property="FontSize" Value="12"/>
+      <Setter Property="TextWrapping" Value="Wrap"/>
+      <Setter Property="Margin" Value="0,2,0,0"/>
+    </Style>
+
+    <Style x:Key="Separator" TargetType="Border">
+      <Setter Property="Height" Value="1"/>
+      <Setter Property="Background" Value="#2A2E37"/>
+      <Setter Property="Margin" Value="0,12"/>
+    </Style>
+
+    <Style TargetType="ScrollBar">
+      <Setter Property="Width" Value="6"/>
+      <Setter Property="MinWidth" Value="6"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ScrollBar">
+            <Track x:Name="PART_Track" IsDirectionReversed="True">
+              <Track.Thumb>
+                <Thumb>
+                  <Thumb.Template>
+                    <ControlTemplate TargetType="Thumb">
+                      <Border CornerRadius="3" Background="#3A3F4B"/>
+                    </ControlTemplate>
+                  </Thumb.Template>
+                </Thumb>
+              </Track.Thumb>
+            </Track>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="UrlBoxStyle" TargetType="TextBox">
+      <Setter Property="Foreground" Value="#E8EAEE"/>
+      <Setter Property="CaretBrush" Value="#2FB36E"/>
+      <Setter Property="SelectionBrush" Value="#2FB36E"/>
+      <Setter Property="FontSize" Value="13.5"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="TextBox">
+            <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center"
+                          HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled"/>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="LogBoxStyle" TargetType="TextBox">
+      <Setter Property="Foreground" Value="#AEB4C0"/>
+      <Setter Property="FontFamily" Value="Consolas"/>
+      <Setter Property="FontSize" Value="11"/>
+      <Setter Property="IsReadOnly" Value="True"/>
+      <Setter Property="TextWrapping" Value="Wrap"/>
+      <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="TextBox">
+            <Border Background="#121419" CornerRadius="10" Padding="8,6">
+              <ScrollViewer x:Name="PART_ContentHost"/>
+            </Border>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  </Border.Resources>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="46"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <!-- ===== заголовок ===== -->
+    <Grid x:Name="TitleBar" Background="Transparent">
+      <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="18,0,0,0" IsHitTestVisible="False">
+        <Border Width="20" Height="20" CornerRadius="6" Background="#2FB36E" Margin="0,0,10,0">
+          <TextBlock Text="&#xE896;" FontFamily="{StaticResource Icons}" FontSize="11" Foreground="White"
+                     HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+        <TextBlock Text="Video Loader" FontWeight="SemiBold" FontSize="14" VerticalAlignment="Center"/>
+        <TextBlock Text="  by mysik" Foreground="#6E7584" FontSize="12" VerticalAlignment="Center" Margin="0,1,0,0"/>
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">
+        <Button x:Name="MinBtn" Style="{StaticResource TitleBtn}" Content="&#xE921;" ToolTip="Свернуть"/>
+        <Button x:Name="CloseBtn" Style="{StaticResource TitleBtn}" Content="&#xE8BB;" ToolTip="Закрыть"/>
+      </StackPanel>
+    </Grid>
+
+    <!-- ===== вкладки ===== -->
+    <Border Grid.Row="1" Margin="16,2,16,0" Background="#1C1F26" CornerRadius="12" Padding="4">
+      <UniformGrid Columns="3">
+        <RadioButton x:Name="NavMain" Style="{StaticResource NavBtn}" IsChecked="True" Content="Скачать"/>
+        <RadioButton x:Name="NavQueue" Style="{StaticResource NavBtn}">
+          <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Загрузки" VerticalAlignment="Center"/>
+            <Border x:Name="QueueBadge" Background="#2FB36E" CornerRadius="8" MinWidth="18" Height="16"
+                    Padding="5,0" Margin="7,0,0,0" VerticalAlignment="Center" Visibility="Collapsed">
+              <TextBlock x:Name="QueueBadgeText" Text="0" Foreground="White" FontSize="10.5" FontWeight="SemiBold"
+                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+          </StackPanel>
+        </RadioButton>
+        <RadioButton x:Name="NavSettings" Style="{StaticResource NavBtn}" Content="Настройки"/>
+      </UniformGrid>
+    </Border>
+
+    <!-- ===== СКАЧАТЬ ===== -->
+    <Grid x:Name="PageMain" Grid.Row="2" Margin="16,14,16,16">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+
+      <!-- поле ссылки -->
+      <Border x:Name="UrlField" Background="#1C1F26" CornerRadius="14" BorderBrush="#1C1F26" BorderThickness="1.5" Padding="14,0,6,0" Height="50">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+          </Grid.ColumnDefinitions>
+          <TextBlock Text="&#xE71B;" FontFamily="{StaticResource Icons}" FontSize="14" Foreground="#6E7584"
+                     VerticalAlignment="Center" Margin="0,0,10,0"/>
+          <Grid Grid.Column="1">
+            <TextBlock x:Name="UrlPlaceholder" Text="Вставь ссылку на видео" Foreground="#6E7584" FontSize="13.5"
+                       VerticalAlignment="Center" IsHitTestVisible="False" Margin="2,0,0,0"/>
+            <TextBox x:Name="UrlBox" Style="{StaticResource UrlBoxStyle}"/>
+          </Grid>
+          <Button x:Name="ClearBtn" Grid.Column="2" Style="{StaticResource IconBtn}" Content="&#xE711;" FontSize="11"
+                  ToolTip="Очистить" Visibility="Collapsed"/>
+          <Button x:Name="PasteBtn" Grid.Column="3" Style="{StaticResource SecondaryBtn}" Background="#262A33"
+                  Padding="12,8" Margin="4,0,0,0" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Text="&#xE77F;" FontFamily="{StaticResource Icons}" FontSize="12" VerticalAlignment="Center" Margin="0,0,7,0"/>
+              <TextBlock Text="Вставить" VerticalAlignment="Center"/>
+            </StackPanel>
+          </Button>
+        </Grid>
+      </Border>
+
+      <Grid Grid.Row="1" Margin="0,14,0,0">
+
+        <!-- пусто -->
+        <StackPanel x:Name="StateEmpty" VerticalAlignment="Center" Margin="10,0,10,40">
+          <Grid Width="104" Height="104" HorizontalAlignment="Center">
+            <Ellipse Fill="#2FB36E" Opacity="0.16" Width="104" Height="104">
+              <Ellipse.Effect>
+                <BlurEffect Radius="22"/>
+              </Ellipse.Effect>
+            </Ellipse>
+            <Border Width="84" Height="84" CornerRadius="42" Background="#1C1F26" BorderBrush="#2A2E37" BorderThickness="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+              <TextBlock Text="&#xE896;" FontFamily="{StaticResource Icons}" FontSize="32" Foreground="#2FB36E"
+                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+          </Grid>
+          <TextBlock Text="Скопируй ссылку на видео" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,18,0,6"/>
+          <TextBlock Text="Программа сама подхватит её из буфера обмена. Подходят YouTube, VK Видео, RuTube, TikTok и сотни других сайтов."
+                     Foreground="#8B92A0" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Center" MaxWidth="320"/>
+        </StackPanel>
+
+        <!-- загрузка информации -->
+        <StackPanel x:Name="StateLoading" VerticalAlignment="Center" Visibility="Collapsed" Margin="0,0,0,40">
+          <Path x:Name="LoadSpinner" Width="52" Height="52" Stroke="#2FB36E" StrokeThickness="4"
+                StrokeStartLineCap="Round" StrokeEndLineCap="Round" Stretch="None"
+                Data="M 26,4 A 22,22 0 1 1 4,26" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center">
+            <Path.RenderTransform>
+              <RotateTransform Angle="0"/>
+            </Path.RenderTransform>
+          </Path>
+          <TextBlock Text="Ищу видео…" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,16,0,4"/>
+          <TextBlock x:Name="LoadingSub" Text="Обычно это занимает пару секунд" Foreground="#8B92A0" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- установка компонентов -->
+        <StackPanel x:Name="StateSetup" VerticalAlignment="Center" Visibility="Collapsed" Margin="12,0,12,40">
+          <TextBlock Text="&#xE896;" FontFamily="{StaticResource Icons}" FontSize="34" Foreground="#2FB36E" HorizontalAlignment="Center"/>
+          <TextBlock Text="Устанавливаю компоненты" FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,14,0,4"/>
+          <TextBlock x:Name="SetupSub" Text="" Foreground="#8B92A0" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap"/>
+          <Grid Height="6" Margin="0,18,0,0">
+            <Border Background="#262A33" CornerRadius="3"/>
+            <Border x:Name="SetupBar" Background="#2FB36E" CornerRadius="3" RenderTransformOrigin="0,0.5">
+              <Border.RenderTransform>
+                <ScaleTransform ScaleX="0"/>
+              </Border.RenderTransform>
+            </Border>
+          </Grid>
+          <TextBlock Text="Это нужно один раз: yt-dlp скачивает видео, ffmpeg склеивает картинку со звуком, deno нужен для YouTube."
+                     Style="{StaticResource Hint}" TextAlignment="Center" Margin="0,14,0,0"/>
+        </StackPanel>
+
+        <!-- ошибка -->
+        <StackPanel x:Name="StateError" VerticalAlignment="Center" Visibility="Collapsed" Margin="12,0,12,40">
+          <Border Width="64" Height="64" CornerRadius="32" Background="#2B1D21" HorizontalAlignment="Center">
+            <TextBlock Text="&#xE783;" FontFamily="{StaticResource Icons}" FontSize="26" Foreground="#F0525F"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+          </Border>
+          <TextBlock x:Name="ErrorTitle" Text="Не получилось" FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Center"
+                     TextAlignment="Center" TextWrapping="Wrap" Margin="0,16,0,6"/>
+          <TextBlock x:Name="ErrorText" Text="" Foreground="#8B92A0" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap"/>
+          <Button x:Name="RetryBtn" Style="{StaticResource SecondaryBtn}" Background="#262A33" Content="Попробовать снова"
+                  HorizontalAlignment="Center" Padding="18,10" Margin="0,18,0,0"/>
+        </StackPanel>
+
+        <!-- карточка видео -->
+        <Grid x:Name="StateInfo" Visibility="Collapsed">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+          </Grid.RowDefinitions>
+          <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,-6,0">
+            <StackPanel Margin="0,0,6,0">
+              <Grid>
+                <Border x:Name="Thumb" Height="208" CornerRadius="14" Background="#1C1F26"/>
+                <Border x:Name="DurationBadge" Background="#CC0B0C10" CornerRadius="6" Padding="7,2"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10">
+                  <TextBlock x:Name="DurationText" Text="" FontSize="11.5" FontWeight="SemiBold" Foreground="White"/>
+                </Border>
+                <Border x:Name="PlaylistBadge" Background="#CC0B0C10" CornerRadius="6" Padding="8,3"
+                        HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Visibility="Collapsed">
+                  <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#xE90B;" FontFamily="{StaticResource Icons}" FontSize="11" Foreground="White"
+                               VerticalAlignment="Center" Margin="0,0,6,0"/>
+                    <TextBlock x:Name="PlaylistBadgeText" Text="Плейлист" FontSize="11.5" FontWeight="SemiBold" Foreground="White"/>
+                  </StackPanel>
+                </Border>
+              </Grid>
+              <TextBlock x:Name="InfoTitle" Text="" FontSize="15.5" FontWeight="SemiBold" TextWrapping="Wrap"
+                         MaxHeight="44" TextTrimming="CharacterEllipsis" Margin="2,12,2,3"/>
+              <TextBlock x:Name="InfoChannel" Text="" Foreground="#8B92A0" Margin="2,0,2,0" TextTrimming="CharacterEllipsis"/>
+
+              <CheckBox x:Name="SwPlaylist" Style="{StaticResource Switch}" Margin="2,14,2,0" Visibility="Collapsed">
+                <StackPanel>
+                  <TextBlock Text="Скачать весь плейлист" FontWeight="SemiBold"/>
+                  <TextBlock x:Name="SwPlaylistHint" Text="Видео сохранятся в отдельную папку" Style="{StaticResource Hint}"/>
+                </StackPanel>
+              </CheckBox>
+
+              <TextBlock Text="КАЧЕСТВО" Style="{StaticResource Caption}" Margin="4,18,0,8"/>
+              <WrapPanel x:Name="QualityPanel"/>
+
+              <Button x:Name="FolderBtn" Style="{StaticResource RowBtn}" Background="#1C1F26" Margin="0,8,0,4">
+                <Grid>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/>
+                  </Grid.ColumnDefinitions>
+                  <TextBlock Text="&#xE838;" FontFamily="{StaticResource Icons}" FontSize="15" Foreground="#C9CDD6"
+                             VerticalAlignment="Center" Margin="0,0,12,0"/>
+                  <StackPanel Grid.Column="1">
+                    <TextBlock Text="Сохранить в" Foreground="#8B92A0" FontSize="11.5"/>
+                    <TextBlock x:Name="FolderText" Text="" TextTrimming="CharacterEllipsis"/>
+                  </StackPanel>
+                  <TextBlock Grid.Column="2" Text="Изменить" Foreground="#2FB36E" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </Grid>
+              </Button>
+            </StackPanel>
+          </ScrollViewer>
+
+          <Button x:Name="DownloadBtn" Grid.Row="1" Style="{StaticResource PrimaryBtn}" Margin="0,12,0,0">
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Text="&#xE896;" FontFamily="{StaticResource Icons}" FontSize="14" VerticalAlignment="Center" Margin="0,0,10,0"/>
+              <TextBlock x:Name="DownloadBtnText" Text="Скачать" FontSize="14" VerticalAlignment="Center"/>
+            </StackPanel>
+          </Button>
+        </Grid>
+      </Grid>
+
+      <!-- подсказка про Zapret -->
+      <Border Grid.Row="2" Background="#1C1F26" CornerRadius="11" Padding="12,9" Margin="0,12,0,0">
+        <StackPanel Orientation="Horizontal">
+          <Ellipse x:Name="ZapretDot" Width="8" Height="8" Fill="#4A505C" VerticalAlignment="Center" Margin="0,0,10,0"/>
+          <TextBlock x:Name="ZapretText" Text="" Foreground="#8B92A0" FontSize="12" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        </StackPanel>
+      </Border>
+    </Grid>
+
+    <!-- ===== ЗАГРУЗКИ ===== -->
+    <Grid x:Name="PageQueue" Grid.Row="2" Margin="16,14,16,16" Visibility="Collapsed">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <Grid Margin="4,0,0,10">
+        <StackPanel>
+          <TextBlock Text="Загрузки" FontSize="18" FontWeight="SemiBold"/>
+          <TextBlock x:Name="QueueSummary" Text="Пока ничего не скачано" Style="{StaticResource Hint}"/>
+        </StackPanel>
+        <Button x:Name="ClearDoneBtn" Style="{StaticResource SecondaryBtn}" Background="#1C1F26" Content="Очистить готовые"
+                HorizontalAlignment="Right" VerticalAlignment="Center" Padding="12,8" Visibility="Collapsed"/>
+      </Grid>
+      <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,0,-6,0">
+        <StackPanel x:Name="QueueList" Margin="0,0,6,0"/>
+      </ScrollViewer>
+      <StackPanel x:Name="QueueEmpty" Grid.Row="1" VerticalAlignment="Center" Margin="0,0,0,50">
+        <TextBlock Text="&#xE896;" FontFamily="{StaticResource Icons}" FontSize="30" Foreground="#3A3F4B" HorizontalAlignment="Center"/>
+        <TextBlock Text="Здесь появятся твои загрузки" Foreground="#8B92A0" HorizontalAlignment="Center" Margin="0,12,0,0"/>
+      </StackPanel>
+    </Grid>
+
+    <!-- ===== НАСТРОЙКИ ===== -->
+    <ScrollViewer x:Name="PageSettings" Grid.Row="2" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Margin="0,14,4,8">
+      <StackPanel Margin="16,0,12,12">
+
+        <TextBlock Text="ЗАГРУЗКИ" Style="{StaticResource Caption}"/>
+        <Border Style="{StaticResource Card}" Padding="4">
+          <StackPanel>
+            <Button x:Name="SetFolderBtn" Style="{StaticResource RowBtn}">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="&#xE838;" FontFamily="{StaticResource Icons}" FontSize="15" Foreground="#C9CDD6" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                <StackPanel Grid.Column="1">
+                  <TextBlock Text="Папка для видео"/>
+                  <TextBlock x:Name="SetFolderText" Text="" Style="{StaticResource Hint}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
+                </StackPanel>
+                <TextBlock Grid.Column="2" Text="&#xE76C;" FontFamily="{StaticResource Icons}" FontSize="11" Foreground="#6E7584" VerticalAlignment="Center"/>
+              </Grid>
+            </Button>
+            <Button x:Name="OpenFolderBtn" Style="{StaticResource RowBtn}">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="&#xE8DA;" FontFamily="{StaticResource Icons}" FontSize="15" Foreground="#C9CDD6" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                <TextBlock Grid.Column="1" Text="Открыть папку с видео" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="&#xE76C;" FontFamily="{StaticResource Icons}" FontSize="11" Foreground="#6E7584" VerticalAlignment="Center"/>
+              </Grid>
+            </Button>
+          </StackPanel>
+        </Border>
+
+        <TextBlock Text="ОСНОВНОЕ" Style="{StaticResource Caption}"/>
+        <Border Style="{StaticResource Card}">
+          <StackPanel>
+            <CheckBox x:Name="SwAutoPaste" Style="{StaticResource Switch}">
+              <StackPanel>
+                <TextBlock Text="Подхватывать ссылку из буфера" FontWeight="SemiBold"/>
+                <TextBlock Text="Скопировал ссылку, открыл программу, и видео уже найдено" Style="{StaticResource Hint}"/>
+              </StackPanel>
+            </CheckBox>
+            <Border Style="{StaticResource Separator}"/>
+            <CheckBox x:Name="SwCompat" Style="{StaticResource Switch}">
+              <StackPanel>
+                <TextBlock Text="Видео для любого плеера" FontWeight="SemiBold"/>
+                <TextBlock Text="MP4 в H.264: откроется везде, в том числе на телевизоре и в телефоне. 2K и 4K скачиваются как есть" Style="{StaticResource Hint}"/>
+              </StackPanel>
+            </CheckBox>
+            <Border Style="{StaticResource Separator}"/>
+            <CheckBox x:Name="SwCover" Style="{StaticResource Switch}">
+              <StackPanel>
+                <TextBlock Text="Обложка в MP3" FontWeight="SemiBold"/>
+                <TextBlock Text="Добавлять превью видео как обложку трека" Style="{StaticResource Hint}"/>
+              </StackPanel>
+            </CheckBox>
+          </StackPanel>
+        </Border>
+
+        <TextBlock Text="КОМПОНЕНТЫ" Style="{StaticResource Caption}"/>
+        <Border Style="{StaticResource Card}">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel VerticalAlignment="Center">
+              <TextBlock Text="yt-dlp" FontWeight="SemiBold"/>
+              <TextBlock x:Name="ComponentsText" Text="Не установлены" Style="{StaticResource Hint}"/>
+            </StackPanel>
+            <Button x:Name="UpdateBtn" Grid.Column="1" Style="{StaticResource SecondaryBtn}" Background="#262A33"
+                    Padding="14,9" Content="Обновить"/>
+          </Grid>
+        </Border>
+
+        <TextBlock Text="ЖУРНАЛ" Style="{StaticResource Caption}"/>
+        <Border Style="{StaticResource Card}" Padding="6">
+          <TextBox x:Name="LogBox" Style="{StaticResource LogBoxStyle}" Height="130"/>
+        </Border>
+
+        <TextBlock Text="О ПРОГРАММЕ" Style="{StaticResource Caption}"/>
+        <Border Style="{StaticResource Card}" Margin="0,6,0,4">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Width="44" Height="44" CornerRadius="13" Margin="0,0,14,0" VerticalAlignment="Top">
+              <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                  <GradientStop Color="#2FB36E" Offset="0"/>
+                  <GradientStop Color="#1D7F8C" Offset="1"/>
+                </LinearGradientBrush>
+              </Border.Background>
+              <TextBlock Text="&#xE896;" FontFamily="{StaticResource Icons}" FontSize="20" Foreground="White"
+                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <StackPanel Grid.Column="1">
+              <TextBlock Text="Video Loader" FontWeight="SemiBold" FontSize="14"/>
+              <TextBlock Style="{StaticResource Hint}">
+                <Run Text="Сделано"/>
+                <Run x:Name="Signature" Text="by mysik" Foreground="#2FB36E" FontWeight="SemiBold" Cursor="Hand"/>
+              </TextBlock>
+              <TextBlock Text="Скачивание видео и музыки с YouTube и других сайтов. Лучше всего работает вместе с Zapret GUI."
+                         Style="{StaticResource Hint}" Margin="0,8,0,0"/>
+            </StackPanel>
+          </Grid>
+        </Border>
+      </StackPanel>
+    </ScrollViewer>
+
+    <!-- ===== уведомление ===== -->
+    <Border x:Name="Snack" Grid.Row="0" Grid.RowSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+            Margin="20,0,20,22" Padding="16,11" CornerRadius="12" Background="#2A2E38" BorderBrush="#363B47" BorderThickness="1"
+            Opacity="0" IsHitTestVisible="False">
+      <Border.Effect>
+        <DropShadowEffect BlurRadius="18" ShadowDepth="2" Opacity="0.5" Color="Black"/>
+      </Border.Effect>
+      <TextBlock x:Name="SnackText" Text="" TextWrapping="Wrap" MaxWidth="320"/>
+    </Border>
+
+    <!-- ===== диалог ===== -->
+    <Grid x:Name="Overlay" Grid.Row="0" Grid.RowSpan="3" Background="#B30B0C10" Visibility="Collapsed">
+      <Border Width="330" Background="#1E2128" CornerRadius="16" Padding="20" BorderBrush="#2E333E" BorderThickness="1"
+              VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel>
+          <TextBlock x:Name="DlgTitle" Text="" FontSize="16" FontWeight="SemiBold" TextWrapping="Wrap"/>
+          <TextBlock x:Name="DlgText" Text="" Style="{StaticResource Hint}" FontSize="13" Margin="0,8,0,0"/>
+          <Grid Margin="0,18,0,0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*"/><ColumnDefinition Width="10"/><ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="DlgNo" Style="{StaticResource SecondaryBtn}" Background="#2A2E38" Content="Отмена"/>
+            <Button x:Name="DlgYes" Grid.Column="2" Style="{StaticResource PrimaryBtn}" Content="OK"/>
+          </Grid>
+        </StackPanel>
+      </Border>
+    </Grid>
+  </Grid>
+</Border>
