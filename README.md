@@ -1,51 +1,49 @@
 # Video Loader by mysik
 
-Программа для Windows, которая скачивает видео и музыку с YouTube, VK Видео, RuTube, TikTok и сотен других сайтов. Скопировали ссылку, открыли программу — видео уже найдено.
+Скачивает видео и музыку с YouTube, VK Видео, RuTube, TikTok и сотен других сайтов. Скопировали ссылку, открыли программу — видео уже найдено.
+
+**Страница программы и скачивание:** https://mysik-portfolio.vercel.app/soft/video-loader.html
 
 ## Что умеет
 
-- **Ссылка из буфера** — программа сама подхватывает скопированную ссылку
-- **Качество на выбор** — 4K, 2K, 1080p, 720p… или только звук в MP3
-- **Плейлисты целиком** — в отдельную папку
-- **Очередь загрузок** — скорость, сколько осталось, отмена и повтор
-- **Видео для любого плеера** — MP4 в H.264, открывается везде
-- **MP3 с обложкой**, названием и автором
-- **Работает вместе с Zapret GUI** — YouTube качается на полной скорости
+- **Ссылка из буфера** — программа сама подхватывает скопированную ссылку.
+- **Качество на выбор** — 4K, 2K, 1080p, 720p… или только звук в MP3.
+- **Плейлисты целиком** — каждый в свою папку.
+- **Очередь загрузок** — скорость, сколько осталось, отмена и повтор.
+- **Для любого плеера** — mP4 в H.264 открывается везде, даже на старом телевизоре.
+- **MP3 с обложкой** — с названием и автором, как в музыкальном сервисе.
 
-## Первый запуск
-
-1. Запустите `VideoLoader.exe` — права администратора не нужны.
-2. Программа предложит один раз скачать компоненты (~200 МБ) с их официальных страниц на GitHub:
-   [yt-dlp](https://github.com/yt-dlp/yt-dlp) скачивает видео, [ffmpeg](https://github.com/yt-dlp/FFmpeg-Builds) склеивает картинку со звуком, [deno](https://github.com/denoland/deno) нужен для YouTube.
-   Они хранятся в `%LOCALAPPDATA%\VideoLoader`.
-3. Видео сохраняются в «Загрузки\Video Loader», папку можно поменять в «Настройках».
-
-## Если что-то не работает
-
-- YouTube качается медленно или не находит видео — включите [Zapret GUI](https://mysik-zapret.netlify.app).
-- Перестал работать какой-то сайт — в «Настройках» нажмите «Обновить» у yt-dlp.
-- «YouTube просит подтверждение» — подождите пару минут и попробуйте снова.
-- Антивирус удалил компоненты — добавьте `%LOCALAPPDATA%\VideoLoader` в исключения.
-
-> Скачивайте только то, что можно: свои видео, открытые для загрузки или для личного просмотра.
-
-## Сборка
+## Как начать
 
 Нужна только Windows 10 или 11 — компилятор .NET Framework 4.x уже встроен в систему.
 
 1. Скачайте репозиторий: зелёная кнопка **Code → Download ZIP**, и распакуйте.
-2. Запустите `build.bat` — за несколько секунд рядом появится `VideoLoader.exe`.
-3. Перенесите `VideoLoader.exe` куда удобно и запускайте.
+2. Запустите `build.bat` — через пару секунд рядом появится `VideoLoader.exe`.
+3. Откройте `VideoLoader.exe`. Права администратора не нужны.
+4. **Скачайте компоненты.** При первом запуске программа один раз загрузит yt-dlp, ffmpeg и deno (~200 МБ) с их официальных страниц.
+5. **Скопируйте ссылку на видео.** Вернитесь в программу, выберите качество и нажмите «Скачать».
 
-Файлы в репозитории: `VideoLoader.cs`, `MainWindow.xaml`, `app.manifest`, `app.ico`, `build.bat`.
+## Полезно знать
+
+- YouTube качается медленно — включите Zapret GUI.
+- Перестал работать какой-то сайт — в «Настройках» нажмите «Обновить» у yt-dlp.
+- Скачивайте только то, что можно: свои видео, открытые для загрузки или для личного просмотра.
+
+Файлы: `MainWindow.xaml`, `README.txt`, `VideoLoader.cs`, `app.ico`, `app.manifest`, `build.bat`.
 
 ## Другие программы by mysik
 
-- [Zapret GUI](https://mysik-zapret.netlify.app) — возвращает Discord, YouTube и Steam без VPN
-- [Video Loader](https://github.com/mmmaksmog-commits/video-loader) — скачивание видео и музыки
-- [Converter](https://github.com/mmmaksmog-commits/converter) — конвертер видео, музыки и картинок
-- [Win Cleaner](https://github.com/mmmaksmog-commits/win-cleaner) — очистка и настройка Windows
-- [DNS Switch](https://github.com/mmmaksmog-commits/dns-switch) — смена DNS в один клик
+- [Zapret GUI](https://mysik-zapret.netlify.app) — Возвращает Discord, YouTube и Steam одной кнопкой. Без VPN: скорость и IP остаются вашими.
+- [DNS Switch](https://mysik-portfolio.vercel.app/soft/dns-switch.html) — Меняет DNS в один клик и сам проверяет, какой быстрее именно у вас.
+- [Пинг](https://mysik-portfolio.vercel.app/soft/ping.html) — Следит за интернетом каждую секунду и подсказывает, где проблема: Wi-Fi, роутер или провайдер.
+- [Передача](https://mysik-portfolio.vercel.app/soft/peredacha.html) — Файлы, фото и тексты между компьютером и телефоном по QR-коду. Без проводов и облаков.
+- [Converter](https://mysik-portfolio.vercel.app/soft/converter.html) — Видео, музыка и картинки в нужный формат, включая HEIC с iPhone. Умеет сжимать перед отправкой.
+- [Снимок](https://mysik-portfolio.vercel.app/soft/snimok.html) — Скриншот области по PrintScreen, стрелки, размытие и нумерация. Сразу в буфер.
+- [Win Cleaner](https://mysik-portfolio.vercel.app/soft/win-cleaner.html) — Чистит мусор, убирает рекламу и Copilot, наводит порядок в автозагрузке. Всё можно вернуть.
+- [Диск](https://mysik-portfolio.vercel.app/soft/disk.html) — Карта диска за минуту: видно, какие папки и файлы съели всё место.
+- [Раскладка](https://mysik-portfolio.vercel.app/soft/raskladka.html) — Напечатали «ghbdtn»? Одна клавиша — и слово исправлено, раскладка переключена.
+- [Буфер](https://mysik-portfolio.vercel.app/soft/bufer.html) — Помнит всё, что вы копировали: текст, ссылки, картинки. Ctrl+Shift+V — и вставлено.
+- [Визитка](https://mysik-portfolio.vercel.app/soft/vizitka.html) — Конструктор сайтов для мастеров: маникюр, барбер, массаж. Сайт под ключ за 15–30 минут.
 
-Все программы — на сайте **[mysik-zapret.netlify.app](https://mysik-zapret.netlify.app)**.
+Все программы — в портфолио: https://mysik-portfolio.vercel.app/#programs  
 Сделано [mysik](https://mysik-portfolio.vercel.app).
